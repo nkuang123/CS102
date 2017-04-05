@@ -1,0 +1,14 @@
+public class TestDoubleDigits {
+  public static void main(String[] args) {
+    DoubleDigit testdd = new DoubleDigit(9);
+    
+    System.out.println( testdd.incrementValue());
+    
+    
+    
+    
+    
+    
+    
+  }
+}

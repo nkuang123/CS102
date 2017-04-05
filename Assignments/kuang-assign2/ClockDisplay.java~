@@ -1,0 +1,29 @@
+public class ClockDisplay {
+  static final int HOURS_IN_DAY = 24;
+  static final int MINUTES_IN_HOUR = 60;
+  DoubleDigit hours;
+  DoubleDigit minutes;
+  
+  ClockDisplay() {
+    hours = new DoubleDigit( HOURS_IN_DAY);
+    minutes = new DoubleDigit( MINUTES_IN_HOUR);
+  }
+  
+  public void incrementClock( int amountIncrement) {
+    for (int i = 0; i <= amountIncrement; i++) {
+      minutes.incrementValue();
+      if ( minutes.displayValue == 0)
+        hours.incrementValue();
+    }
+      
+        
+      
+    
+    
+    
+  }
+  
+  
+  
+  
+  

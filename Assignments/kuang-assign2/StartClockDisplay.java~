@@ -1,0 +1,13 @@
+public class StartClockDisplay {
+  public static void main(String[] args) {
+    ClockDisplay testClock = new ClockDisplay();
+    
+    testClock.setTime(540);
+    System.out.println( testClock.getTime());
+    
+    
+    
+    
+    
+  }
+}
