@@ -1,7 +1,7 @@
 # CS102
 
-This repository contains my assignments for my 101 Computer Science course.
+This repository contains my assignments for my 102 Computer Science course.
 
-All programs are written in the Racket language.
+All programs are written in the Java language.
 
 Labs soon to be uploaded.
