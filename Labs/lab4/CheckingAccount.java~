@@ -1,0 +1,56 @@
+public class CheckingAccount extends BankAccount {
+  
+  static final double MINIMUM_BALANCE = 5000;
+  double penalty = 5.00;
+  
+  public CheckingAccount( double initialAmount) {
+   
+    super( initialAmount);
+    
+  }
+  
+  public void subtractPenalty() {
+   
+    if ( super.balance < this.MINIMUM_BALANCE) 
+      
+      super.withdraw( penalty);
+    
+    
+    
+  }
+  
+  public String toString() {
+   
+    return ("Checking " + super.toString());
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

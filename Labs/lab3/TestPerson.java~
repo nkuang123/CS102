@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class TestPerson {
+  public static void main(String[] args) {
+    Scanner keyboard = new Scanner( System.in);
+    
+    System.out.println( "Please enter the last name of person 1: ");
+    String name1 = keyboard.next();
+    System.out.println( "Please enter the age of person 1: ");
+    int age1 = keyboard.nextInt();
+    System.out.println( "Please enter the gender of person 1 (F/M/T): ");
+    char gender1 = (keyboard.next().charAt(0));
+    
+    System.out.println( "Please enter the last name of person 2: ");
+    String name2 = keyboard.next();
+    System.out.println( "Please enter the age of person 2: ");
+    int age2 = keyboard.nextInt();
+    System.out.println( "Please enter the gender of person 2 (F/M/T): ");
+    char gender2 = (keyboard.next().charAt(0));
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }
+}

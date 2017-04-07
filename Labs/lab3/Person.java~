@@ -1,0 +1,8 @@
+public class Person {
+  String lastName;
+  int age;
+  char gender;
+  int idNumber;
+  static int counter = 0;
+  
+  

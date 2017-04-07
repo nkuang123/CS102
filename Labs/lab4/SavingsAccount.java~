@@ -1,0 +1,29 @@
+public class SavingsAccount extends BankAccount {
+  
+  private double interestRate = 0.005;
+  
+  public SavingsAccount( double initialAmount) {
+    
+    super( initialAmount);
+    
+  }
+  
+  public void addPeriodicInterest() {
+   
+    private double interestAmount = super.balance * this.interestRate;
+    
+    super.deposit( interestAmount);
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}

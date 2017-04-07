@@ -1,0 +1,228 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+/**
+ *  Lab 6 starter file 
+ *
+ *  NAME: Norman Kuang
+ * 
+ *  When run as a program, this class opens a window on the screen that
+ *  shows an unmoving red circle on a yellow background. Notice that the
+ *  class has no constructor except for the default zero-parameter one.
+ * 
+ *  For part 1, change this file so that the ball moves down and to the 
+ *  right forever.
+ * 
+ *  For part 2, change this file so that the ball bounces off all 4 walls.
+ * 
+ *  For part 3, add a JPanel to the bottom of the window that contains
+ *  JButtons to stop and start the ball and to quit the simulation.
+ *  After you add the new JPanel, you will need to change the
+ *  position the ball is in when it hits the new JPanel because it will 
+ *  have to bounce at a position higher than it did before. Remember to
+ *  declare the new JPanel and the JButtons as instance variables in the
+ *  proper area of the program.
+ * 
+ *  For part 4, modify the animation so that the ball reacts when
+ *  the user presses the stop, start and quit buttons. The ball
+ *  should be moving when the simulation starts and the Start button
+ *  should be unenabled. When the Stop button is pressed, the Stop
+ *  button should be unenabled and the Start button should be enabled.
+ *  
+ *  When the ball is stopped, make sure it continues in the same 
+ *  direction it was moving when the ball is started again.
+ * 
+ */
+public class BouncingBallwButtonActions extends JPanel implements ActionListener {
+     
+    // Window constants
+    public static final int APP_WIDTH = 600; // height of JFrame
+    public static final int APP_HEIGHT = 450; // width of JFrame
+    public static final int WINDOW_X = 100; // x position of window
+    public static final int WINDOW_Y = 50;  // y position of window
+    public static final String WINDOW_TITLE = "Static ball";
+    public static final Color BACK_GRND_CLR = Color.YELLOW;
+    
+    // Ball constants
+    public static final int BALL_DIAM = 50;
+    public static final Color BALL_COLOR = Color.RED;
+    public static final Color OUTLINE_COLOR = Color.BLACK;
+    
+    // Timer constants
+    public static final int CLOCK_SPEED = 20;
+    
+    /////////////////////////////////////////////
+    // Instance variables for the Ball, the 
+    // initial x and y coordinates of Ball and
+    // the change in the x and y direction on 
+    // on each clock tick
+    //
+    // Use these variables in your solution to 
+    // parts 1 and 2.
+    private int xPos = 100, yPos = 100;
+    private int xChange = 3, yChange = 3;
+    private int savedXChange, savedYChange;
+    
+    /////////////////////////////////////////////
+    // instance variables for JComponents added
+    // in part 3 go below.
+    private JPanel buttonPanel;
+    private JButton stopButton;
+    private JButton startButton;
+    private JButton quitButton;
+    
+    
+    /////////////////////////////////////////////
+    // instance methods
+    /**
+     * This method is called by the paintComponent 
+     * method. It draws a red circle outlined in 
+     * black.
+     */
+    public void drawFrame(Graphics g, int width, int height) {
+      
+      if ((this.xPos <= 0 && this.xChange < 0) || ((this.xPos + BALL_DIAM) >= width && this.xChange > 0)) {
+        this.xChange *= -1;
+      } 
+      else if ((this.yPos <= 0 && this.yChange < 0) || ((this.yPos + BALL_DIAM) >= height && this.yChange > 0)) {
+        this.yChange *= -1;
+      } 
+      
+      // Moving the ball; changing values of x & y coordinates
+      this.xPos += this.xChange;
+      this.yPos += this.yChange;
+     
+      g.setColor(BALL_COLOR); 
+      g.fillOval(xPos, yPos, BALL_DIAM, BALL_DIAM);
+      g.setColor(OUTLINE_COLOR);
+      g.drawOval(xPos, yPos, BALL_DIAM, BALL_DIAM);
+      
+    }
+       
+       
+     
+    /**
+     * This method is initially called every time an ActionEvent is 
+     * fired, in this case every time the clock ticks
+     */
+    public void actionPerformed(ActionEvent evt) {
+        // The next line (commented out) shows how to check if the 
+        // component that generated the ActionEvent is a JButton
+      
+      
+      
+      
+      
+      if (evt.getSource() instanceof JButton) {
+        
+        
+        
+        if (evt.getActionCommand().equals("STOP")) {
+          
+          stopButton.setEnabled(false);
+          startButton.setEnabled(true);
+          this.savedXChange = this.xChange;
+          this.savedYChange = this.yChange;
+          this.xChange = 0;
+          this.yChange = 0;
+          
+        } else if (evt.getActionCommand().equals("START")) {
+          
+          this.xChange = this.savedXChange;
+          this.yChange = this.savedYChange;
+          stopButton.setEnabled(true);
+          startButton.setEnabled(false);
+          
+        } else if (evt.getActionCommand().equals("QUIT")) {
+          
+          System.exit(0);
+          
+        }
+        
+        
+        
+        
+      }
+      
+      repaint();
+    }
+    // end actionPerformed
+    
+    /**
+     * The paintComponent method is part of every JPanel class. It is 
+     * called when the program starts and every time repaint() is 
+     * called in the program.
+     */
+    protected void paintComponent(Graphics g) {
+        // call paintComponent in parent class, sending in the Graphics object
+        super.paintComponent(g);
+        
+        // call drawing method, passing in the Graphics object g and 3 ints
+        drawFrame(g, this.getWidth(), this.getHeight());
+    }// end paintComponent
+    
+    /*
+     * The setup method takes the BallStarter JPanel and 
+     * instantiates all components to be added to the JPanel
+     */
+    public void setup(BouncingBallwButtonActions drawPanel) { 
+        JFrame window = new JFrame(WINDOW_TITLE); 
+        drawPanel.setBackground(BACK_GRND_CLR); 
+        window.setContentPane(drawPanel);
+        drawPanel.setPreferredSize(new Dimension(APP_WIDTH,APP_HEIGHT));
+        drawPanel.setLayout(new BorderLayout());
+        // buttonPanel, and all the JButtons should be
+        // set up in the blank space below. This will 
+        // be done in part 3.
+        buttonPanel = new JPanel();
+        
+        stopButton = new JButton("STOP");
+        stopButton.addActionListener(this);
+        
+        startButton = new JButton("START");
+        startButton.setEnabled(false);
+        startButton.addActionListener(this);
+        
+        quitButton = new JButton("QUIT");
+        quitButton.addActionListener(this);
+        
+        buttonPanel.add(stopButton);
+        buttonPanel.add(startButton);
+        buttonPanel.add(quitButton);
+       
+
+        // These statements instantiate and set up JFrame
+        window.setContentPane(this);
+        window.pack();
+        window.setLocation(WINDOW_X,WINDOW_Y);
+        window.setSize(APP_WIDTH,APP_HEIGHT);
+        window.add(buttonPanel, BorderLayout.SOUTH);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.setVisible(true);
+             
+        // A Timer object will create an ActionEvent every 
+        // CLOCK_SPEED milliseconds. This ActionEvent is 
+        // caught by the actionPerformed method in this class. 
+        // To start generating ActionEvents, uncomment the next 
+        // 2 lines. 
+        
+        Timer frameTimer = new Timer(CLOCK_SPEED, this);
+        frameTimer.start();
+    } 
+    
+    /////////////////////////////////////////////
+    // main method 
+    /*
+     * Execution starts here. The main method 
+     * instantiates a BouncingBallwButtons and passes this
+     * variable to the setup method. This works
+     * because an instance method is being called
+     * on an object of type BouncingBallwButtons.
+     */
+    public static void main(String[] args) {
+        BouncingBallwButtonActions drawingArea = new BouncingBallwButtonActions();
+        drawingArea.setup(drawingArea);
+    } // end main
+} // end class

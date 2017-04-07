@@ -1,0 +1,58 @@
+import java.text.*; // required for DecimalFormat class
+
+public abstract class BankAccount {
+  
+  protected double balance;
+  
+  public BankAccount() {
+    
+    this.balance = 0.00;
+    
+  }
+  
+  public BankAccount( double initialAmount) {
+   
+    this.balance = initialAmount;
+    
+  }
+  
+  public void deposit( double amount) {
+   
+    this.balance += amount;
+    
+  }
+  
+  public void withdraw( double amount) {
+   
+    this.balance -= amount;
+    
+  }
+  
+  public String toString() {
+    
+    DecimalFormat df = new DecimalFormat( "#.00");
+    
+    return df.format( this.balance);
+  
+  }
+    
+      
+    
+    
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+}

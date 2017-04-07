@@ -1,0 +1,31 @@
+// This program prompts the reader for a score (possible real number) and
+//  calculates a character grade from the score, using the showInputDialog of the
+//  JOptionPane class.
+
+// Name: Norman Kuang
+// Date: February 6, 2017
+
+import javax.swing.*;
+
+public class AssignGrade {
+  public static void main(String[] args) {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  } // end of main method
+} // end of AssignGrade class
